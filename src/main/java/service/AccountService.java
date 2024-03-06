@@ -84,7 +84,7 @@ public class AccountService {
     }
 
     public void listBills() {
-        System.out.println("main.entity.Bill No. Type Amount Due Date State PROVIDER");
+        System.out.println("Bill No. Type Amount Due Date State PROVIDER");
         this.bills.forEach(bill -> {
             System.out.println(
                     bill.getBillId() + ". " +
@@ -144,14 +144,14 @@ public class AccountService {
 
                 this.balance = this.balance.subtract(BigDecimal.valueOf(bill.getAmount()));
                 bill.setBillState(BillState.PAID);
-                System.out.println("main.entity.Payment has been completed for main.entity.Bill with id " + billId);
+                System.out.println("Payment has been completed for Bill with id " + billId);
                 System.out.println("Your current balance is: " + balance);
             }
         }
     }
 
     public void listDueBills() {
-        System.out.println("main.entity.Bill No. Type Amount Due Date State PROVIDER");
+        System.out.println("Bill No. Type Amount Due Date State PROVIDER");
         // Sort
         List<Bill> billsNotPaid = getBillNotPaid();
         Collections.sort(billsNotPaid, Comparator.comparing(Bill::getDueDate));
@@ -183,12 +183,12 @@ public class AccountService {
 
             System.out.println("Payment for bill id " + billId + " is scheduled on " + scheduledDate);
         } else {
-            System.out.println("Sorry! Unable to schedule payment for main.entity.Bill with id " + billId);
+            System.out.println("Sorry! Unable to schedule payment for Bill with id " + billId);
         }
     }
 
     public void listPayments() {
-        System.out.println("No. Amount main.entity.Payment Date State main.entity.Bill Id");
+        System.out.println("No. Amount Payment Date State Bill Id");
         for (int i = 0; i < payments.size(); i++) {
             Payment payment = payments.get(i);
             String billId = payment.getBill() != null ? String.valueOf(payment.getBill().getBillId()) : "";
@@ -203,7 +203,7 @@ public class AccountService {
     }
 
     public void searchBillsByProvider(String provider) {
-        System.out.println("main.entity.Bill No. Type Amount Due Date State PROVIDER");
+        System.out.println("Bill No. Type Amount Due Date State PROVIDER");
         for (Bill bill : bills) {
             if (bill.getProvider().equals(provider)) {
                 System.out.println(
